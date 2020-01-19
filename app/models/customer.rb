@@ -1,0 +1,2 @@
+def Customer  < User
+end
