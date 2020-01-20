@@ -1,7 +1,7 @@
 class TimeKeeper < ApplicationRecord
+  has_one :user
 
-  def self.start_task(task_id)
-    user_id = 1
+  def self.start_task(user_id, task_id)
     current_time = TimeKeeper.where("user_id=="+user_id.to_s()).last
     if current_time
       if current_time.user_id != task_id
@@ -13,8 +13,7 @@ class TimeKeeper < ApplicationRecord
     end
   end
 
-  def self.end_task
-    user_id = 1
+  def self.end_task(user_id)
     end_time = DateTime.now
     current_time = TimeKeeper.where("user_id=="+user_id.to_s()).last
     current_time.end_time = end_time
